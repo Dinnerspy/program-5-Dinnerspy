@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,6 +19,8 @@ public class Main {
 
     public static void main(String[] args) {
         BloomFilter smith = new BloomFilter();
+        ArrayList<String> WordList = new ArrayList<>();
+        double Count, Fails = 0;
 
         try {
             URL u = new URL("http://gutenberg.ca/ebooks/brontec-shirley/brontec-shirley-00-t.txt");
@@ -29,16 +32,8 @@ public class Main {
             while ((l = in.readLine()) != null) {
                 for (String word : l.split("[^A-Za-z]+")) {
                     if (word.length() > 0) {
-//                        if (smith.contains(word)) {
-//                            System.out.println(word);
-//                        } else {
-//                            if (smith.h.contains(word)== false) {
-//                                System.out.println("fALSE");
-//                            } else {
-//                                smith.add(word);
-//                                smith.h.add(word);
-//                            }
-//                        }
+                        WordList.add(word.toLowerCase());
+
                     }
                 }
             }
@@ -46,6 +41,92 @@ public class Main {
         } catch (IOException e) {
             System.err.println("Something didn't work reading URL " + e);
         }
+        Count = 0;
+        Fails = 0;
+        for (int i = 0; i < WordList.size() - 3; i++) {
+            String word;
+
+            word = WordList.get(i) + " " + WordList.get(i + 1) + " " + WordList.get(i + 2);
+            Count++;
+            if (smith.contains(word.toLowerCase())) {
+
+                if (smith.h.contains(word.toLowerCase()) == false) {
+                    Fails++;
+
+                    System.out.println("FALSE");
+
+                } else {
+
+                    System.out.println(word.toLowerCase());
+                }
+            } else {
+
+                smith.add(word.toLowerCase());
+                smith.h.add(word.toLowerCase());
+
+            }
+
+        }
+        System.out.println(Fails / Count);
+        smith = new BloomFilter();
+        Count = 0;
+        Fails = 0;
+        for (int i = 0; i < WordList.size() - 4; i++) {
+            String word;
+
+            word = WordList.get(i) + " " + WordList.get(i + 1) + " " + WordList.get(i + 2) + " " + WordList.get(i + 3);
+            Count++;
+            if (smith.contains(word.toLowerCase())) {
+
+                if (smith.h.contains(word.toLowerCase()) == false) {
+                    Fails++;
+
+                    System.out.println("FALSE");
+
+                } else {
+
+                    System.out.println(word.toLowerCase());
+                }
+            } else {
+
+                smith.add(word.toLowerCase());
+                smith.h.add(word.toLowerCase());
+
+            }
+
+        }
+
+        System.out.println(Fails / Count);
+        
+        smith = new BloomFilter();
+        Count = 0;
+        Fails = 0;
+        for (int i = 0; i < WordList.size() -5; i++) {
+            String word;
+
+            word = WordList.get(i) + " " + WordList.get(i + 1) + " " + WordList.get(i + 2) + " " + WordList.get(i + 3)+ " " + WordList.get(i + 4);
+            Count++;
+            if (smith.contains(word.toLowerCase())) {
+
+                if (smith.h.contains(word.toLowerCase()) == false) {
+                    Fails++;
+
+                    System.out.println("FALSE");
+
+                } else {
+
+                    System.out.println(word.toLowerCase());
+                }
+            } else {
+
+                smith.add(word.toLowerCase());
+                smith.h.add(word.toLowerCase());
+
+            }
+
+        }
+
+        System.out.println(Fails / Count);
 
     }
 }
