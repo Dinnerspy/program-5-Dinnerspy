@@ -28,8 +28,12 @@ public class BloomFilterTest {
 	BloomFilter BF = new BloomFilter();
        
 	assertEquals(239425, BF.hash1("Smith Jim Test"));
+        assertEquals(613, BF.hash2("Smith Jim Test"));
+        assertEquals(50432, BF.hash3("Smith Jim Test"));
+        assertEquals(63376, BF.hash4("Smith Jim Test"));
 
     }
     
+
 
 }
