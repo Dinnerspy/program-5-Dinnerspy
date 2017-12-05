@@ -17,8 +17,12 @@ public class BloomFilterTest {
     {
 	BloomFilter BF = new BloomFilter();
         BF.add("Smith Jim Test");
+        BF.add("Amih wdw Test");
 	assertEquals(true, BF.contains("Smith Jim Test"));
+        assertEquals(false, BF.contains("Smith wdw Test"));
     }
+    
+    
     
 
 }

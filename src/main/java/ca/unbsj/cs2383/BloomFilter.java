@@ -23,8 +23,7 @@ public class BloomFilter {
     }
 
     int hash1(String x) {
-       // System.out.println("----------");
-       // System.out.println((x.hashCode() & 0x7fffffff) % 1000000);
+    
         return (x.hashCode() & 0x7fffffff) % 1000000;
     }
 
@@ -37,19 +36,35 @@ public class BloomFilter {
             HashReturn += x.charAt(i) - 48;
 
         }
-       // System.out.println(HashReturn % 100000);
-       // System.out.println("----------");
+       
         return Math.abs(HashReturn % 100000);
     }
 
+    //using homers rule
     int hash3(String x) {
+    
+    int Hash = 0;
+    for (int i= x.length()-1; i>=0; i--){
+    
+        Hash = ( i + Hash*128) % 100000;
+    
+    }
 
-        return (x.hashCode() & 0x7fffffff) % 1000000;
+        return Hash;
     }
 
     int hash4(String x) {
+        x.replace("\\s+", "");
+         int HashReturn = 0;
 
-        return (x.hashCode() & 0x7fffffff) % 1000000;
+        for (int i = 0; i < x.length(); i++) {
+
+            HashReturn += x.charAt(i) - 48;
+
+        }
+       
+        return Math.abs(HashReturn % 100000);
+
     }
 
     public void add(String Data) {
