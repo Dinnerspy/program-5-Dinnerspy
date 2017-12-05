@@ -23,7 +23,7 @@ public class Main {
         double Count, Fails = 0;
 
         try {
-            URL u = new URL("http://gutenberg.ca/ebooks/brontec-shirley/brontec-shirley-00-t.txt");
+            URL u = new URL(args[0]);
             String l;
 
             BufferedReader in = new BufferedReader(
