@@ -22,7 +22,14 @@ public class BloomFilterTest {
         assertEquals(false, BF.contains("Smith wdw Test"));
     }
     
-    
+      @Test
+    public void HashTest()
+    {
+	BloomFilter BF = new BloomFilter();
+       
+	assertEquals(239425, BF.hash1("Smith Jim Test"));
+
+    }
     
 
 }
