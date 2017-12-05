@@ -43,6 +43,7 @@ public class Main {
         }
         Count = 0;
         Fails = 0;
+        System.out.println("Runing test on 3 phrase strings:");
         for (int i = 0; i < WordList.size() - 3; i++) {
             String word;
 
@@ -53,7 +54,7 @@ public class Main {
                 if (smith.h.contains(word.toLowerCase()) == false) {
                     Fails++;
 
-                    System.out.println("FALSE");
+                    System.out.println("FALSE Positive");
 
                 } else {
 
@@ -67,7 +68,9 @@ public class Main {
             }
 
         }
-        System.out.println(Fails / Count);
+        System.out.println("\nFail Rate : "+Fails / Count);
+        
+        System.out.println("\n\nRuning test on 4 phrase strings:\n");
         smith = new BloomFilter();
         Count = 0;
         Fails = 0;
@@ -81,7 +84,7 @@ public class Main {
                 if (smith.h.contains(word.toLowerCase()) == false) {
                     Fails++;
 
-                    System.out.println("FALSE");
+                    System.out.println("FALSE Positive");
 
                 } else {
 
@@ -96,8 +99,8 @@ public class Main {
 
         }
 
-        System.out.println(Fails / Count);
-        
+        System.out.println("\nFail Rate : "+Fails / Count);
+        System.out.println("\n\n\n\nRuning test on 5 phrase strings:\n\n\n\n");
         smith = new BloomFilter();
         Count = 0;
         Fails = 0;
@@ -111,7 +114,7 @@ public class Main {
                 if (smith.h.contains(word.toLowerCase()) == false) {
                     Fails++;
 
-                    System.out.println("FALSE");
+                    System.out.println("FALSE Positive");
 
                 } else {
 
@@ -126,7 +129,7 @@ public class Main {
 
         }
 
-        System.out.println(Fails / Count);
+        System.out.println("\nFail Rate : "+Fails / Count);
 
     }
 }

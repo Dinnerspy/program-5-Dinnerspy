@@ -36,7 +36,7 @@ public class BloomFilter {
             HashReturn += x.charAt(i) - 48;
 
         }
-       
+
         return Math.abs(HashReturn % 100000);
     }
 
